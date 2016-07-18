@@ -33,6 +33,8 @@ def test_callback(watcher_id, config_dir, logger=None):
       config_dir: the CoRR configuration directory
       logger: a logger object to write log messages
 
+    >>> test_callback(1, '/fake/directory', logger=...)
+
     """
     if logger:
         logger.info("in callback for watcher {0} and config directory {1}".format(watcher_id,

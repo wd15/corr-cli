@@ -61,7 +61,27 @@ def test_list_jobs():
         result = runner.invoke(cli, arguments)
         assert result.exit_code == 0
         assert result.output == LIST_OUTPUT
+        for job in data:
+            remove_job(config_dir, job, runner)
+        result = runner.invoke(cli, arguments)
+        assert result.exit_code == 0
+        assert result.output == 'No jobs in file data store\n'
 
+def remove_job(config_dir, job, runner):
+    """Remove a job from the data store.
+
+    Args:
+      config_dir: the config directory
+      job: the job data dictionary
+      runner: the Click runner
+    """
+    arguments = ['--config-dir={0}'.format(config_dir),
+                 'jobs',
+                 'remove',
+                 '-f',
+                 '{0}'.format(job['label'])]
+    result = runner.invoke(cli, arguments)
+    assert result.exit_code == 0
 
 def test_list_json():
     """Test listing jobs as JSON.

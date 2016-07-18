@@ -56,7 +56,7 @@ def list_config(ctx):
 
 @config.command()
 @click.pass_context
-def edit(ctx):
+def edit(ctx): # pragma: no cover
     """Edit the contents of the config file.
     """
     config_dir = ctx.parent.parent.params['config_dir']
